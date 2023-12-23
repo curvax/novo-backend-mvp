@@ -55,7 +55,7 @@ model NovoConvertido {
 
 model TriagemProdist {
   id                     Int      @id @default(autoincrement())
-  Cooperado              User     @relation("UserToProdist", fields: [idCooperado], references: [id])
+ // Cooperado              User     @relation("UserToProdist", fields: [idCooperado], references: [id])
   idCooperado            Int  @default(autoincrement())
   
   ContaDeLuz             String
@@ -91,15 +91,47 @@ model Post {
   updatedAt DateTime @updatedAt     @map("updated_at")
 }
 
+model Meal {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  type        String
+  dateTime    DateTime
+  calories    Float
+  description String
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@map("meals")
+}
+
+model Recipe {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  name        String
+  description String
+  ingredients String
+  calories    Float
+  user        User      @relation(fields: [userId], references: [id])
+}
+
+model Ingredient {
+  id         Int      @id @default(autoincrement())
+  name       String
+  calories   Float
+  // ... outros campos nutricionais ...
+}
+
+
 model User {
+  meals Meal[] // Isso indica que um usuário pode ter várias refeições
+  recipe Recipe[]
   id                     Int       @id @default(autoincrement())
   name                   String    @db.VarChar(63)
   email                  String    @db.VarChar(127) @unique
   password               String    @db.VarChar(255)
   cpfCnpj                String    @db.VarChar(127)
   mobilePhone            String    @default("mobilePhone") @db.VarChar(12)
-  phone                  String    @db.VarChar(12)
-  company                String    @db.VarChar(50)
+ // phone                  String    @db.VarChar(12)
+ // company                String    @db.VarChar(50)
   postalCode             String    @default("postalCode") @db.VarChar(9)
   address                String    @db.VarChar(250)
   state                  String    @db.VarChar(250)
@@ -107,9 +139,9 @@ model User {
   city                   String    @db.VarChar(50)
   addressNumber          String    @db.VarChar(5)
   complement             String    @default("complement") @db.VarChar(250)
-  municipalInscription   String    @default("municipalinscription") @db.VarChar(50)
-  stateInscription       String    @default("stateinscription") @db.VarChar(50)
-  additionalEmails       String    @default("additionalEmails") @db.VarChar(250)
+ // municipalInscription   String    @default("municipalinscription") @db.VarChar(50)
+ // stateInscription       String    @default("stateinscription") @db.VarChar(50)
+//  additionalEmails       String    @default("additionalEmails") @db.VarChar(250)
   observations           String    @default("observations") @db.VarChar(250)
   birthAt                DateTime? @db.Timestamp(0)
   role                   Int
@@ -119,9 +151,14 @@ model User {
   emailVerificationCode  String    @default("12345") @db.VarChar(5) 
   SMSVerificationCode    String    @default("12345") @db.VarChar(5)
   forgetVerificationCode String    @default("12345") @db.VarChar(5)
-  isCooperadoApoiador    Boolean   @default(false)
+  //isCooperadoApoiador    Boolean   @default(false)
+  
+  weight      Float
+  height      Float
+  sex         String
+  activityLevel String
 
-  Cooperado TriagemProdist[] @relation("UserToProdist")
+  //Cooperado TriagemProdist[] @relation("UserToProdist")
 
   @@map("users")
 }

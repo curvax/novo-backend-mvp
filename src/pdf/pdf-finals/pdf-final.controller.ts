@@ -73,8 +73,8 @@ export class PdfFinalController {
     doc.moveDown();
     doc.font('Helvetica').fontSize(16).text(` E-Mail: ${usuario.email}  `, 27, 175, { width: 500 });
     doc.moveDown();
-    doc.font('Helvetica').fontSize(16).text(` Telefone: ${usuario.phone} , Celular: ${usuario.mobilePhone}  `, 25, 200, { width: 500 });
-    doc.moveDown();
+    // doc.font('Helvetica').fontSize(16).text(` Telefone: ${usuario.phone} , Celular: ${usuario.mobilePhone}  `, 25, 200, { width: 500 });
+    // doc.moveDown();
     doc.font('Helvetica').fontSize(16).text(` CPF: ${usuario.cpfCnpj} `, 25, 225, { width: 500 });
     doc.moveDown();
     doc.font('Helvetica-Bold').fontSize(15).text(` 2 - Dados da Unidade Consumidora  `, 25, 250, { width: 500 });

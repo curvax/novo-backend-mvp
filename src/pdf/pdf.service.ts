@@ -68,8 +68,8 @@
       doc.moveDown();
       doc.font('Helvetica').fontSize(16).text(`E-Mail: ${users.email}`, 50, 500, { width: 500 });
       doc.moveDown();
-      doc.font('Helvetica').fontSize(16).text(`Telefone: ${users.phone}`, 50, 550, { width: 500 });
-      doc.moveDown();
+      // doc.font('Helvetica').fontSize(16).text(`Telefone: ${users.phone}`, 50, 550, { width: 500 });
+      // doc.moveDown();
       doc.font('Helvetica').fontSize(16).text(`Celular: ${users.mobilePhone} `, 50, 600, { width: 500 });
       doc.moveDown();
       doc.font('Helvetica').fontSize(16).text(`CPF/CNPJ: ${users.cpfCnpj}`, 50, 650, { width: 500 });

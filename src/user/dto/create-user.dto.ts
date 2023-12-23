@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IsString, IsEmail, MinLength, MaxLength, Matches, IsOptional, IsDateString, IsEnum } from "class-validator";
+import { IsString, IsEmail, MinLength, MaxLength, Matches, IsOptional, IsDateString, IsEnum, IsNumber } from "class-validator";
 import { Role } from "src/enums/role.enum";
 
 export class CreateUserDTO {
@@ -22,14 +22,14 @@ export class CreateUserDTO {
     @IsString()
     cpfCnpj   :string; 
 
-    @IsString()
-    company   :string; 
+    // @IsString()
+    // company   :string; 
 
     @IsString()
     mobilePhone   :string;  
 
-    @IsString()
-    phone     :string; 
+    // @IsString()
+    // phone     :string; 
     
     @IsString()
     postalCode       :string;
@@ -49,8 +49,8 @@ export class CreateUserDTO {
     @IsString()   
     addressNumber    :string;
 
-    @IsString()   
-    additionalEmails :string;
+    // @IsString()   
+    // additionalEmails :string;
   
     @IsOptional() 
     @IsDateString()
@@ -70,4 +70,16 @@ export class CreateUserDTO {
 
     @IsString()   
     observations :string;
+
+    @IsNumber() 
+    weight      :number;
+    
+    @IsNumber() 
+    height      :number;
+
+    @IsString() 
+    sex         :string;
+
+    @IsString() 
+    activityLevel: string
 }
