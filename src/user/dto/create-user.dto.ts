@@ -53,7 +53,7 @@ export class CreateUserDTO {
     // additionalEmails :string;
   
     @IsOptional() 
-    @IsDateString()
+    
     birthAt: string;
 
     @IsOptional()
@@ -72,6 +72,14 @@ export class CreateUserDTO {
     @IsString()   
     observations :string;
 
+    @IsOptional()
+    @IsString()   
+    dataCriacao :string;
+
+    @IsOptional()
+    @IsString()   
+    dataNascimento :string;
+
     @IsNumber() 
     weight      :number;
     
@@ -82,5 +90,7 @@ export class CreateUserDTO {
     sex         :string;
 
     @IsString() 
-    activityLevel: string
+    activityLevel: string;
+
+
 }
