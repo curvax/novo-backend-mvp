@@ -123,7 +123,7 @@ model Ingredient {
 
 model User {
   meals Meal[] // Isso indica que um usuário pode ter várias refeições
-  recipe Recipe[]
+  recipe Recipe[] 
   id                     Int       @id @default(autoincrement())
   name                   String    @db.VarChar(63)
   email                  String    @db.VarChar(127) @unique

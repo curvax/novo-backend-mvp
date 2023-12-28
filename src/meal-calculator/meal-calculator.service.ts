@@ -42,7 +42,7 @@ export class MealCalculatorService {
     if (typeof user.weight !== 'number' || user.weight <= 0) errors.push('Peso inválido ou ausente');
     if (typeof user.height !== 'number' || user.height <= 0) errors.push('Altura inválida ou ausente');
     if (!user.birthAt || new Date(user.birthAt) >= new Date()) errors.push('Data de nascimento inválida ou ausente');
-    if (!user.sex || !['male', 'female'].includes(user.sex.toLowerCase())) errors.push('Sexo inválido ou ausente');
+    if (!user.sex || !['male', 'female'].includes(user.sex.toLowerCase())) errors.push('Gênero inválido ou ausente');
     if (!user.activityLevel) errors.push('Nível de atividade ausente');
 
     // Se houver algum erro, lance uma exceção com a lista de erros

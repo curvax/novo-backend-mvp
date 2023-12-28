@@ -396,7 +396,7 @@
               subject: 'Recuperação de Senha',
               transporterName: 'gmail',
               to: user.email, // list of receivers
-              from: 'demithehomie@gmail.com', // sender address
+              from: 'acurvax@gmail.com', // sender address
           
               template: 'forget',
               context: {
@@ -500,8 +500,8 @@
         this.mailerService.sendMail({
             transporterName: 'gmail',
             to: user.email, // list of receivers
-            from: 'demithehomie@gmail.com', // sender address
-            subject: 'Bem-Vindo a Coopeere', // Subject line
+            from: 'acurvax@gmail.com', // sender address
+            subject: 'Bem-Vindo a Curvax', // Subject line
             template: 'confirm',
             context: {
                 code:  emailVerificationCode,

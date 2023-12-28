@@ -68,6 +68,7 @@ export class CreateUserDTO {
     @MaxLength(6)
     SMSVerificationCode: string;
 
+    @IsOptional()
     @IsString()   
     observations :string;
 

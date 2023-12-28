@@ -68,7 +68,7 @@ export class MailingService {
         .sendMail({
           transporterName: 'gmail',
           to: 'engdemeferreira@gmail.com', // list of receivers
-          from: 'demithehomie@gmail.com', // sender address
+          from: 'acurvax@gmail.com', // sender address
           subject: 'Verficiaction Code', // Subject line
           template: 'action',
           context: {
