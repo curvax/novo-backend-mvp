@@ -54,7 +54,9 @@ async function bootstrap() {
       'http://localhost:8100/', 
       'http://localhost:8101', 
       'http://localhost:8101/', 
-      'https://novos-convertidos-f968d.web.app/'
+      'https://novos-convertidos-f968d.web.app/',
+      'https://curvax-br.web.app/',
+      'https://curvax-br.web.app',
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
