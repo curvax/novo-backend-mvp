@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { AssinaturaController } from './assinatura.controller';
+import { AssinaturaService } from './assinatura.service';
 
 @Module({
   imports: [
@@ -11,8 +12,8 @@ import { AssinaturaController } from './assinatura.controller';
   ],
   controllers: [AssinaturaController],
   providers: [
-    PrismaService
+    PrismaService, AssinaturaService
   ],
-  exports: []
+  exports: [AssinaturaService]
 })
 export class AssinaturaModule {}

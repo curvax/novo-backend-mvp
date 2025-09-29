@@ -45,6 +45,7 @@ createNestServer(server)
   .catch((err) => console.error('Nest broken', err));
 
 async function bootstrap() {
+  //////// CORS GERALMENTE É RESOLVIDA AI
   const app = await NestFactory.create(AppModule);
   app.enableCors({
     origin: [

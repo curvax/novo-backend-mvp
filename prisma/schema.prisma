@@ -123,7 +123,13 @@ model Ingredient {
 
 model User {
   meals Meal[] // Isso indica que um usuário pode ter várias refeições
-  recipe Recipe[] 
+  recipe Recipe[] // Isso indica que um usuário pode ter várias receitas
+  
+  isPremium             Boolean    @default(false)
+  typeOfSubscription    String     @default("none")
+  isOnDebt              Boolean    @default(false)
+  daysOnDebt            Int        @default(0)
+
   id                     Int       @id @default(autoincrement())
   name                   String    @db.VarChar(63)
   email                  String    @db.VarChar(127) @unique
@@ -147,7 +153,7 @@ model User {
   role                   Int
   createdAt              DateTime  @default(now()) @db.Timestamp(0)
   updatedAt              DateTime  @default(now()) @db.Timestamp(0)
-  isSMSVerified          String    @default("false")
+  isSMSVerified          Boolean    @default(false)
   emailVerificationCode  String    @default("12345") @db.VarChar(5) 
   SMSVerificationCode    String    @default("12345") @db.VarChar(5)
   forgetVerificationCode String    @default("12345") @db.VarChar(5)

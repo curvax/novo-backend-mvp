@@ -5,20 +5,44 @@ import { ClienteDTO } from './client.dto';
 import { ClienteService } from './client.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ParamId } from 'src/decorators/param-id.decorator';
+import { AssinaturaService } from 'src/assinatura/assinatura.service';
 //import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 require('dotenv').config();
 
- const ASAAS_API_KEY = process.env.ASAAS_API_KEY;
-// const ASAAS_API_KEY = "$aact_YTU5YTE0M2M2N2I4MTliNzk0YTI5N2U5MzdjNWZmNDQ6OjAwMDAwMDAwMDAwMDAwNTA4OTE6OiRhYWNoXzg2MDQ2MzlmLTI4ZDQtNGZiMi04YjI5LWM1NWMyNzBjOGMyNw==";
-
+// const ASAAS_API_KEY = process.env.ASAAS_API_KEY;
+ const ASAAS_API_KEY = "$aact_YTU5YTE0M2M2N2I4MTliNzk0YTI5N2U5MzdjNWZmNDQ6OjAwMDAwMDAwMDAwMDAwNzE3NzU6OiRhYWNoX2YzZTUwZTI0LTBkMmQtNDQ5ZS05OTE5LTdjNjYyZTFjODRkZQ=="
 @Controller('customers')
 export class ClienteController {
 
   private readonly asaasApiUrl = 'https://sandbox.asaas.com/api/v3';
  
-  constructor( private httpService: HttpService, private clienteService: ClienteService, private prisma: PrismaService) {}
+  constructor( 
+    private httpService: HttpService, 
+    private clienteService: ClienteService, 
+    private prisma: PrismaService,
+    private assinaturaService: AssinaturaService
+    ) {}
 
+
+  @Post('create-customer-and-pay-subs')
+  async createCustomerAndPurchaseSubscription(@Body() datacliente: any): Promise<any>{
+    const url = `${this.asaasApiUrl}/customers`;
+    const headers = {  access_token: ASAAS_API_KEY, 'Content-Type': 'application/json' };
+    // ABAIXO SALVA NO BANCO DE DADOS DO ASAAS
+    const response = await axios.post(url, datacliente, { headers });
+     // ACIMA SALVA NO BANCO DE DADOS DO ASAAS  
+    const new_id = response.data.id;
+    const new_name = response.data.name;
+    const new_cpfCnpj = response.data.cpfCnpj;
+
+    const dataClientForPayments = {new_id, new_name, new_cpfCnpj}
+    this.assinaturaService.createSubscription(dataClientForPayments)
+    // ABAIXO SALVA NO BANCO DE DADOS
+    const saved_data = await this.clienteService.create(new_id, new_name, new_cpfCnpj);
+    // ACIMA SALVA NO BANCO DE DADOS
+    return { ...response.data, saved_data };
+  }
    
     // @UseGuards(JwtAuthGuard)                               
     @Post()

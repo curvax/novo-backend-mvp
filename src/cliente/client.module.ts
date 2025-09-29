@@ -5,6 +5,7 @@ import { AuthModule } from 'src/auth/auth.module';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ClienteController } from './client.controller';
 import { ClienteService } from './client.service';
+import { AssinaturaService } from 'src/assinatura/assinatura.service';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { ClienteService } from './client.service';
   ],
   controllers: [ClienteController],
   providers: [
-    PrismaService, ClienteService
+    PrismaService, ClienteService, AssinaturaService
   ],
   exports: [ClienteService]
 })
